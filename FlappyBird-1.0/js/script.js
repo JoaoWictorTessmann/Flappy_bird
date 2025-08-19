@@ -18,7 +18,7 @@ pipeNorth.src = "../assets/img/pipeNorth.png";
 pipeSouth.src = "../assets/img/pipeSouth.png";
 
 // variaveis
-let continua = true;// controla o loop do jogo 
+let next = true;// controla o loop do jogo 
 let gap = 125;// espaço entre os canos 
 let constant;// constante é o tamanho do vao do pipe (pipe + passaro) 
 let birdWidth = 40;// largura do passaro 
@@ -51,7 +51,7 @@ document.getElementById("btn-try-again").addEventListener("click", playAgain);
 
 // função de pular
 function moveUp() {
-    if(!continua){// se o jogo não estiver rodando, não faz nada 
+    if(!next){// se o jogo não estiver rodando, não faz nada 
         return;// retorna da função 
     }
     
@@ -64,20 +64,20 @@ function moveUp() {
 
 //função gameover
 function gameOver(){
-    continua = false;//descontinua o jogo 
-    document.getElementById("pontos").innerText = score; // atualiza a pontuação na tela
+    next = false;//descontinua o jogo 
+    document.getElementById("points").innerText = score; // atualiza a pontuação na tela
     document.getElementById("gameOver").style.display = "block";// deixa o game over visivel
 }
 
 //função playagain
 function playAgain() {
-    continua = true; //deixa o loop ligado
+    next = true; //deixa o loop ligado
     score = 0; //começa o score com 0
     birdY = 150; //passaro começa em 150 de altura
     birdVelocityY = 0; // reseta a velocidade do passarinho
     // Resetar imagem
     currentBirdImage = bird1;
-    document.getElementById("pontos").innerText = score; //atualiza a pontuação
+    document.getElementById("points").innerText = score; //atualiza a pontuação
     document.getElementById("gameOver").style.display = "none";// esconde o menu game over
 
     pipe = []; //cria um array vazio para guardar os canos
@@ -97,7 +97,7 @@ pipe[0] = {
 
 // função update no passaro
 function updateBird() {// Atualiza a posição do pássaro com base na velocidade e gravidade 
-    if (!continua) return; //enquanto continuar true retorna a função
+    if (!next) return; //enquanto continuar true retorna a função
     
     // Aplicar gravidade à velocidade
     birdVelocityY += gravity;
@@ -135,7 +135,7 @@ function draw(){// desenha os pipes e o passaro na tela
         ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
         
         //movimenta os canos para a esquerda (negativo)
-        if(continua){
+        if(next){
             pipe[i].x --;// pipe (i) sera jogado para a esquerda
         }
 
