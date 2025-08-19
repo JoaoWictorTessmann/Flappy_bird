@@ -1,0 +1,107 @@
+/* Reset CSS - remove estilos padrão do navegador */
+* {
+  margin: 0; /* Remove margem padrão */
+  padding: 0; /* Remove padding padrão */
+  box-sizing: border-box; /* Inclui border e padding no cálculo do tamanho */
+}
+
+body{
+    margin: 0; /* Remove margens padrão do navegador */
+    height: 100vh; /* Define altura total da viewport */
+    display: flex; /* Usa flexbox para centralização */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    background-color: #70c5ce; /* Azul claro que combina com o fundo do jogo */
+}
+
+/* Container do jogo (canvas + game over) */
+.game-container {
+    position: relative; /* Define posicionamento relativo para os filhos absolutos */
+    width: 288px;  /* Largura exata do canvas do jogo */
+    height: 512px; /* Altura exata do canvas do jogo */
+}
+
+#stage{
+    border: 2px solid #2c99a5; /* Borda azul escura que combina com o tema */
+}
+
+#gameOver {
+    position: absolute; /* Posicionamento absoluto sobre o canvas */
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste fino da centralização */
+    z-index: 10; /* Fica por cima de outros elementos */
+
+    /* Tamanho compacto e proporcional ao jogo */
+    width: 220px; /* Largura ajustada para ser menor */
+    padding: 10px; /* Espaçamento interno confortável */
+    /* Cores inspiradas no pássaro - tons de marrom e bege */
+    background: linear-gradient(135deg, #D2B48C, #DDD5C7); /* Gradiente bege inspirado no corpo do pássaro */
+    border: 3px solid #8B4513; /* Marrom escuro inspirado no chapéu do pássaro */
+    border-radius: 12px; /* Bordas arredondadas suaves */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para profundidade */
+
+    font-family: Flappy; /* Fonte personalizada do jogo */
+    color: #4A4A4A; /* Texto cinza escuro para boa legibilidade */
+    font-size:40px; /* Tamanho de fonte equilibrado */
+    text-align: center; /* Centraliza o texto */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra clara no texto */
+    
+    display: none; /* Inicialmente oculto */
+    animation: fadeIn 0.6s ease-in-out; /* Animação suave de entrada */
+}
+
+#gameOver span {
+    display: block; /* Força quebra de linha
+    font-size: 50px; /* Tamanho menor para a pontuação */
+    color: #FF6B35; /* Laranja inspirado no bico do pássaro */
+    margin: 8px 0px; /* Espaçamento vertical */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Sombra sutil para legibilidade */
+}
+
+#btn-try-again {
+    display: inline-block; /* Permite dimensionamento personalizado */
+    margin-top: 10px; /* Espaço entre o texto e o botão */
+    
+    /* Cores inspiradas no chapéu do pássaro - tons de marrom */
+    background: linear-gradient(135deg, #A0522D, #8B4513); /* Gradiente marrom */
+    border: 2px solid #654321; /* Marrom ainda mais escuro para a borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    
+    font-family: "Flappy"; /* Fonte personalizada do jogo */
+    color: #F5DEB3; /* Texto bege claro para contraste */
+    font-size: 35px; /* Tamanho de fonte adequado */
+    cursor: pointer; /* Indica que é clicável */
+    transition: all 0.3s ease; /* Transição suave para efeitos */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra no texto */
+}
+
+#btn-try-again:hover {
+    background: linear-gradient(135deg, #CD853F, #D2B48C); /* Muda para tons mais claros no hover */
+    border-color: #8B4513; /* Muda a cor da borda */
+    transform: scale(1.05); /* Aumenta levemente o tamanho */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Adiciona sombra no hover */
+}
+
+#btn-try-again:active {
+    transform: scale(0.98); /* Diminui quando clicado (feedback visual) */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Sombra menor quando pressionado */
+}
+
+/* Animação suave de aparição do game over */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; /* Começa invisível */
+        transform: translate(-50%, -40%) scale(0.8); /* Posição inicial e tamanho menor */
+    }
+    to   { 
+        opacity: 1; /* Termina visível */
+        transform: translate(-50%, -50%) scale(1); /* Posição final e tamanho normal */
+    }
+}
+
+/* Importa a fonte personalizada do jogo */
+@font-face{
+    font-family: "Flappy"; /* Nome da fonte para usar no CSS */
+    src: url("../assets/font/flappy.ttf"); /* Caminho para o arquivo da fonte */
+}
